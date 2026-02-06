@@ -17,7 +17,8 @@ pipeline {
 
         stage('Run container') {
             steps {
-                echo 'Starting my app...'
+                echo 'cleaning up old container and starting app...'
+                sh 'docker rm -f flask-container || true'
                 sh 'docker run -d -p 5000:5000 --name flask-container my-flask-app'
             }
        }
